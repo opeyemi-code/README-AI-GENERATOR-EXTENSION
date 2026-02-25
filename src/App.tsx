@@ -3,16 +3,19 @@ import HomeScreen from "./components/HomeScreen";
 import OnBoardingScreen from "./components/OnBoardingScreen";
 import DataContext, { DataProvider } from "./context/DataContext";
 import type { DataContextType } from "./types/models";
+import ValidPage from "./components/ValidPage";
+import InValidPage from "./components/InValidPage";
 
 function AppContent() {
-  const { homeScreen, onBoardingScreen } = useContext<DataContextType | null>(
-    DataContext,
-  )!;
+  const { homeScreen, onBoardingScreen, validPageScreen, inValidPageScreen } =
+    useContext<DataContextType | null>(DataContext)!;
 
   return (
     <>
       {homeScreen && <HomeScreen />}
       {onBoardingScreen && <OnBoardingScreen />}
+      {validPageScreen && <ValidPage />}
+      {inValidPageScreen && <InValidPage />}
     </>
   );
 }

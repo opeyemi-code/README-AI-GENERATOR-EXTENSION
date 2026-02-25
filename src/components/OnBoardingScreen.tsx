@@ -1,25 +1,25 @@
-import { ArrowLeft, Eye, LockKeyhole } from "lucide-react";
+import { Eye, LockKeyhole } from "lucide-react";
 import { useContext } from "react";
 import TextButton from "./TextButton";
 import DataContext from "../context/DataContext";
+import BackButton from "./BackButton";
 
 function OnBoardingScreen() {
-  const { setHomeScreen, setOnBoardingScreen } = useContext(DataContext)!;
+  const {
+    setHomeScreen,
+    setOnBoardingScreen,
+    setValidPageScreen,
+    // setInValidPageScreen,
+  } = useContext(DataContext)!;
 
   return (
     <main className="p-5">
-      <button
-        type="button"
-        className="text-sm text-gray-500 hover:text-black"
-        onClick={() => {
+      <BackButton
+        handleClick={() => {
           setHomeScreen(true);
           setOnBoardingScreen(false);
         }}
-      >
-        <ArrowLeft className="inline mr-1 w-3" />
-        Back
-      </button>
-
+      />
       <section className="py-10 flex flex-col justify-center items-center space-y-3">
         <span>
           <LockKeyhole className="text-indigo-500 w-20 h-20" />
@@ -44,6 +44,11 @@ function OnBoardingScreen() {
           <TextButton
             text="Save & Continue"
             className="w-full text-sm font-semibold bg-indigo-600 text-white py-4 mt-3 rounded-3xl transition-all duration-200 hover:scale-[1.02] hover:bg-indigo-700 hover:cursor-pointer focus:ring-1 focus:ring-indigo-500 focus:ring-inset"
+            handleClick={() => {
+              setOnBoardingScreen(false);
+              setValidPageScreen(true);
+              // setInValidPageScreen(true);
+            }}
           />
         </form>
 
